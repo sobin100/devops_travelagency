@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>Travel packages</title>
+</head>
+<body>
+    <h1>Available Travel Packages</h1>
+    {% for package in packages %}
+
+        <h2>{{package.name}}</h2>
+        <p>{{ package.description}}</p>
+        <p>Price: ${{ package.price}}</p>
+        <p>Slots left: {{ package.available_slots}}</p>
+
+        <a href="{% url 'book_package' package.id%}">Book Now</a>
+    {% endfor %}
+    
+</body>
+</html>
