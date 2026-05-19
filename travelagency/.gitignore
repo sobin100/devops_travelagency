@@ -1,4 +1,29 @@
-*.pyc
+# Python
 __pycache__/
-.env
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual env
 env1/
+venv/
+
+# Django
+db.sqlite3
+/media/
+staticfiles/
+*.log
+
+# Environment variables
+.env
+
+# Docker
+postgres-data/
+*.pid
+*.tar
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
