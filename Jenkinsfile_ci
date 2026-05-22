@@ -9,26 +9,26 @@ pipeline{
 
     stages{
         stage ('Checkout'){
-             step{
+             steps{
                 checkout scm
             }
         }
 
         stage ('Build'){
-            step{
+            steps{
                sh 'docker-compose up -d --build --pull --no-cache'
             }
         }
         
         stage ('Migration and Test'){
-            step{
+            steps{
                 sh 'docker-compose exec -rm web python manage.py runserver migrate --noinput'
                 sh 'docker-compose exec -rm web python manage.py runserver test'
             }
         }
 
         stage ('Push'){
-            step{
+            steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]){
                     sh '''
                         echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
