@@ -16,14 +16,14 @@ pipeline{
 
         stage ('Build'){
             steps{
-               sh  'docker-compose -f travelagency/Docker-compose.yml build --pull --no-cache'
+               sh  'docker-compose -f travelagency/Docker-compose.yaml build --pull --no-cache'
             }
         }
         
         stage ('Migration and Test'){
             steps{
-                sh 'docker-compose -f travelagency/Docker-compose.yml exec -rm web python manage.py runserver migrate --noinput'
-                sh 'docker-compose -f travelagency/Docker-compose.yml exec -rm web python manage.py runserver test'
+                sh 'docker-compose -f travelagency/Docker-compose.yaml exec -rm web python manage.py runserver migrate --noinput'
+                sh 'docker-compose -f travelagency/Docker-compose.yaml exec -rm web python manage.py runserver test'
             }
         }
 
