@@ -16,7 +16,7 @@ pipeline{
 
         stage ('Build'){
             steps{
-               sh 'docker-compose up -d --build --pull --no-cache'
+               sh  'docker compose build --pull --no-cache'
             }
         }
         
