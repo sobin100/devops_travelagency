@@ -2,7 +2,7 @@ FROM python:3.12-slim
 
 WORKDIR /travelagency
 
-COPY . /travelagency/requirement.txt
+COPY . requirement.txt
 
 RUN pip  install --no-cache-dir -r requirement.txt
 
