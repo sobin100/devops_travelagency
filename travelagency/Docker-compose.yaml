@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  web:
+    build: .
+    image: sobine/my_travelagency:ci
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/travelagency
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DB_NAME: travel_db
+      DB_USER: travel_user
+      DB_PASSWORD: So@100903
+      DB_HOST: db
+      DB_PORT: 5432
+
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: travel_db
+      POSTGRES_USER: travel_user
+      POSTGRES_PASSWORD: So@100903
+    ports:
+      - "5432:5432"
