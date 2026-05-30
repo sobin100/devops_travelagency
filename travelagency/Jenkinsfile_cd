@@ -1,0 +1,52 @@
+pipeline {
+    agent any
+
+
+    stages {
+        stage('Checkout'){
+            steps{
+                checkout scm
+            }
+        }
+
+        stage('Deploy'){
+            steps{
+                shhagent(['EC2_SSH_KEY2']){
+                    sh '''
+                        ssh -o StrictHostKeyChecking=no ec2_user@98.92.193.108 "
+                        
+                        cd /home/ec2_user/devops_travelagency &&
+                        source /env1/bin/activate &&
+                        git pull origin main &&
+                        cd /travelagency  &&
+                        travelagency/docker-compose down &&
+                        travelagency/docker-compose pull &&
+                        travelagency/docker-compose up -d &&
+                        travelagency/docker-compose exec web python manage.py migrate --noinput
+
+
+
+                        "
+                    '''
+
+                }
+            }
+        }
+        stage('Smoke Test'){
+            steps{
+                sh 'sleep 10'
+                sh 'curl http://98.92.193.108:8000'
+
+            }
+        }
+    }
+
+    post{
+        success{
+            echo "CD pipeline completed successfully"
+        }
+        failure{
+            echo "CD pipeline failed"
+        }
+    }
+}
