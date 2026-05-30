@@ -18,7 +18,7 @@ pipeline {
                         cd /home/ec2-user/devops_travelagency &&
                         source env1/bin/activate &&
                         git pull origin main &&
-                        cd /travelagency  &&
+                        cd travelagency/  &&
                         travelagency/docker-compose down &&
                         travelagency/docker-compose pull &&
                         travelagency/docker-compose up -d &&
