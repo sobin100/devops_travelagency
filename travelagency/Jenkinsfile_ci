@@ -4,6 +4,8 @@ pipeline{
     environment{
         DOCKER_IMAGE = "sobine/my_travelagency"
         DOCKER_TAG = "ci"
+        DOCKER_CLIENT_TIMEOUT = '300'
+        COMPOSE_HTTP_TIMEOUT = '300'
 
     }
 
