@@ -18,11 +18,11 @@ pipeline {
                         cd /home/ec2-user/devops_travelagency &&
                         source env1/bin/activate &&
                         git pull origin main &&
-                        cd /home/ec2-user/devops_travelagency/travelagency/  &&
-                        docker-compose down &&
-                        docker-compose pull &&
-                        docker-compose up -d &&
-                        docker-compose exec web python manage.py migrate --noinput
+                        cd travelagency  &&
+                        docker-compose -f Docker-compose.yaml down &&
+                        docker-compose -f Docker-compose.yaml pull &&
+                        docker-compose -f Docker-compose.yaml up -d &&
+                        docker-compose -f Docker-compose.yaml exec web python manage.py migrate --noinput
 
 
 
