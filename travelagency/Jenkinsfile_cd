@@ -15,7 +15,7 @@ pipeline {
                     sh '''
                         ssh -o StrictHostKeyChecking=no ec2-user@44.222.142.100 "
                         
-                        cd /home/ec2-user/devops_travelagency &&98.92.193.108
+                        cd /home/ec2-user/devops_travelagency &&
                         source env1/bin/activate &&
                         git pull origin main &&
                         cd travelagency  &&
