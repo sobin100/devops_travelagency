@@ -13,9 +13,9 @@ pipeline {
             steps{
                 sshagent(['EC2_SSH_KEY2']){
                     sh '''
-                        ssh -o StrictHostKeyChecking=no ec2-user@98.92.193.108 "
+                        ssh -o StrictHostKeyChecking=no ec2-user@44.222.142.100 "
                         
-                        cd /home/ec2-user/devops_travelagency &&
+                        cd /home/ec2-user/devops_travelagency &&98.92.193.108
                         source env1/bin/activate &&
                         git pull origin main &&
                         cd travelagency  &&
@@ -35,7 +35,7 @@ pipeline {
         stage('Smoke Test'){
             steps{
                 sh 'sleep 10'
-                sh 'curl http://98.92.193.108:8000'
+                sh 'curl http://44.222.142.100:8000'
 
             }
         }
