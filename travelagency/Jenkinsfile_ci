@@ -24,8 +24,8 @@ pipeline{
         
         stage ('Migration and Test'){
             steps{
-                sh 'docker-compose -f travelagency/docker-compose.yaml exec -rm web python manage.py runserver migrate --noinput'
-                sh 'docker-compose -f travelagency/docker-compose.yaml exec -rm web python manage.py runserver test'
+                sh 'docker-compose -f travelagency/docker-compose.yaml exec -T web python manage.py runserver migrate --noinput'
+                sh 'docker-compose -f travelagency/docker-compose.yaml exec -T web python manage.py runserver test'
             }
         }
 

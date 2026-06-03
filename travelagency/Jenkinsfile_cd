@@ -19,9 +19,10 @@ pipeline {
                         source env1/bin/activate &&
                         git pull origin main &&
                         cd travelagency  &&
-                        docker-compose -f docker-compose.yaml down &&
-                        docker-compose -f docker-compose.yaml pull &&
-                        docker-compose -f docker-compose.yaml up -d &&
+                        docker-compose -f docker-compose.yaml pull web &&
+                        docker-compose -f docker-compose.yaml stop web &&
+                        docker-compose -f docker-compose.yaml rm -f web &&
+                        docker-compose -f docker-compose.yaml up -d web &&
                         docker-compose -f docker-compose.yaml exec -T web python manage.py migrate --noinput
                      
 
