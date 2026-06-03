@@ -24,6 +24,7 @@ pipeline{
         
         stage ('Migration and Test'){
             steps{
+                sh 'docker-compose -f travelagency/docker-compose.yaml up -d web db'
                 sh 'docker-compose -f travelagency/docker-compose.yaml exec -T web python manage.py  migrate --noinput'
                 sh 'docker-compose -f travelagency/docker-compose.yaml exec -T web python manage.py  test'
             }
