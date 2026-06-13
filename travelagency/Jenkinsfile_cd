@@ -45,8 +45,8 @@ pipeline {
     post{
         success{
             emailext(
-                to :'sobineh@gmail.com',
-                subject :"CD SUCCESS:${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                to : "sobineh@gmail.com",
+                subject : "CD SUCCESS:${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body : "The pipeline completed !"
             )
 
@@ -55,8 +55,8 @@ pipeline {
         }
         failure{
             emailext(
-                to :'sobineh@gmail.com',
-                subject :"CD FAILURE:${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                to : "sobineh@gmail.com",
+                subject : "CD FAILURE:${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body : "The pipeline failed !"
             )
             echo "CD pipeline failed"
